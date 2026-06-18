@@ -95,12 +95,13 @@ Application Interface:
 
 ## Future Enhancements
 
-* BMI Calculator
-* Daily Calorie Calculator
-* Conversation Memory
-* Personalized Wellness Plans
-* Voice-Based Interaction
 * User Authentication
+* Voice-Based Interaction
+* Health Data Visualization
+* PDF Wellness Report Export
+* Personalized Goal Tracking
+* Mobile Application Version
+
 
 ## Learning Outcomes
 
