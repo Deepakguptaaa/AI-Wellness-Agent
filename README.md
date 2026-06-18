@@ -1,28 +1,18 @@
-# AI Wellness Agent
+# AI Wellness Agent Pro
 
-AI-powered wellness assistant built using Python, Streamlit, and Google Gemini API.
-
-## Overview
-
-AI Wellness Agent helps users get personalized wellness guidance related to:
-
-* Sleep Improvement
-* Fitness Planning
-* Nutrition Advice
-* Stress Management
-
-The application uses Google's Gemini model to generate real-time responses through an interactive chat interface.
+AI Wellness Agent Pro is an AI-powered health and wellness assistant built using Python, Streamlit, and Google Gemini API. The application helps users receive personalized wellness recommendations, generate wellness reports, and interact with an AI health assistant.
 
 ## Features
 
-* AI-powered wellness recommendations
-* Sleep guidance
-* Fitness suggestions
-* Nutrition support
-* Stress management tips
-* Category-based assistance
-* Chat history support
-* Simple and responsive Streamlit UI
+* AI Wellness Chat Assistant
+* Wellness Report Generator
+* Sleep Improvement Guidance
+* Fitness Recommendations
+* Nutrition Advice
+* Stress Management Support
+* Category-Based Health Assistance
+* Interactive Streamlit Interface
+* Google Gemini AI Integration
 
 ## Tech Stack
 
@@ -45,50 +35,80 @@ AI-Wellness-Agent/
 
 └── screenshots/
 
-```
-└── app.png
-```
+    └── app.png
 
 ## Installation
 
-Clone the repository:
+### Clone Repository
 
+```bash
 git clone https://github.com/Deepakguptaaa/AI-Wellness-Agent.git
-
-Navigate to the project folder:
-
 cd AI-Wellness-Agent
+```
 
-Install dependencies:
+### Create Virtual Environment
 
+```bash
+python -m venv venv
+```
+
+### Activate Virtual Environment
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-Create a .env file:
+### Configure API Key
 
+Create a `.env` file:
+
+```env
 GEMINI_API_KEY=YOUR_API_KEY
+```
 
-Run the application:
+### Run Application
 
+```bash
 streamlit run app.py
+```
 
-## Screenshot
+## Screenshots
 
-Application Screenshot:
+Application Interface:
 
 ![AI Wellness Agent](screenshots/app.png)
 
-## Future Improvements
+## Future Enhancements
 
-* User authentication
-* Health score analysis
-* Wellness report generation
-* Conversation memory
-* Voice-based interaction
+* BMI Calculator
+* Daily Calorie Calculator
+* Conversation Memory
+* Personalized Wellness Plans
+* Voice-Based Interaction
+* User Authentication
+
+## Learning Outcomes
+
+This project demonstrates:
+
+* Generative AI Integration
+* Prompt Engineering
+* Streamlit Application Development
+* API Integration
+* AI-Powered User Assistance
 
 ## Author
 
 Deepak Gupta
 
-B.Tech AI/ML Student
+B.Tech (AI/ML)
 
-Interested in Artificial Intelligence, Machine Learning, and Generative AI.
+Aspiring AI/ML Engineer | Generative AI Enthusiast

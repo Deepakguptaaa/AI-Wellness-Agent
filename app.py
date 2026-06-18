@@ -1,92 +1,181 @@
 import streamlit as st
 from google import genai
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
 
-API_KEY = os.getenv("GEMINI_API_KEY")
+API_KEY = "YOUR_API_KEY_HERE"
 
 client = genai.Client(api_key=API_KEY)
 
-# Page Settings
 st.set_page_config(
-    page_title="AI Wellness Agent",
+    page_title="AI Wellness Agent Pro",
     page_icon="🩺",
     layout="wide"
 )
 
-# Title
-st.title("🩺 AI Wellness Agent")
+# -----------------------------
+# HEADER
+# -----------------------------
 
-# Health Tips
-st.info("""
-💧 Drink enough water
-😴 Sleep 7-8 hours daily
-🏃 Exercise regularly
-🥗 Eat balanced meals
-""")
+st.title("🩺 AI Wellness Agent Pro")
+st.caption("AI-powered wellness assistant")
 
-# Sidebar
+# -----------------------------
+# SIDEBAR
+# -----------------------------
+
 st.sidebar.title("Health Categories")
 
 category = st.sidebar.selectbox(
-    "Select Category",
-    [
-        "General",
-        "Sleep",
-        "Fitness",
-        "Nutrition",
-        "Stress"
-    ]
+    "Choose Category",
+    ["General", "Sleep", "Fitness", "Nutrition", "Stress"]
 )
 
-# Chat History
+st.sidebar.markdown("---")
+st.sidebar.write("### Daily Health Goals")
+st.sidebar.write("💧 Drink 2-3L Water")
+st.sidebar.write("😴 Sleep 7-8 Hours")
+st.sidebar.write("🏃 Exercise 30 Minutes")
+
+# -----------------------------
+# BMI CALCULATOR
+# -----------------------------
+
+st.header("⚖️ BMI Calculator")
+
+weight = st.number_input(
+    "Weight (kg)",
+    min_value=1.0,
+    value=70.0
+)
+
+height = st.number_input(
+    "Height (meters)",
+    min_value=0.5,
+    value=1.70
+)
+
+if st.button("Calculate BMI"):
+
+    bmi = weight / (height ** 2)
+
+    st.success(f"Your BMI is {bmi:.2f}")
+
+    if bmi < 18.5:
+        st.warning("Category: Underweight")
+    elif bmi < 25:
+        st.success("Category: Normal Weight")
+    elif bmi < 30:
+        st.warning("Category: Overweight")
+    else:
+        st.error("Category: Obese")
+
+st.divider()
+
+# -----------------------------
+# WELLNESS REPORT
+# -----------------------------
+
+st.header("📊 Wellness Report Generator")
+
+sleep_hours = st.slider("Sleep Hours", 0, 12, 7)
+water_intake = st.slider("Water Intake (Liters)", 0, 5, 2)
+exercise_minutes = st.slider("Exercise Minutes", 0, 180, 30)
+stress_level = st.slider("Stress Level", 1, 10, 5)
+
+if st.button("Generate Wellness Report"):
+
+    report_prompt = f"""
+    Analyze this wellness profile.
+
+    Sleep Hours: {sleep_hours}
+    Water Intake: {water_intake} liters
+    Exercise Minutes: {exercise_minutes}
+    Stress Level: {stress_level}/10
+
+    Give:
+    - Wellness Score out of 100
+    - Strengths
+    - Weaknesses
+    - Recommendations
+    """
+
+    try:
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=report_prompt
+        )
+
+        st.success("Report Generated")
+        st.write(response.text)
+
+    except Exception as e:
+        st.error(f"Error: {e}")
+
+st.divider()
+
+# -----------------------------
+# AI CHAT
+# -----------------------------
+
+st.header("💬 AI Wellness Chat")
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display old messages
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.write(msg["content"])
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
 
-# User Input
-prompt = st.chat_input("Ask your health question...")
+user_input = st.chat_input(
+    "Ask a wellness question..."
+)
 
-if prompt:
+if user_input:
 
     st.session_state.messages.append(
-        {"role": "user", "content": prompt}
+        {
+            "role": "user",
+            "content": user_input
+        }
     )
 
     with st.chat_message("user"):
-        st.write(prompt)
+        st.write(user_input)
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=f"""
-You are an AI Wellness Agent.
+    try:
 
-Category: {category}
+        prompt = f"""
+        You are a professional wellness coach.
 
-Provide practical and easy-to-understand wellness advice.
+        Category: {category}
 
-Focus on:
-- Sleep
-- Fitness
-- Nutrition
-- Stress Management
+        Give practical advice related to:
+        - Sleep
+        - Fitness
+        - Nutrition
+        - Stress Management
 
-Question:
-{prompt}
-"""
-    )
+        User Question:
+        {user_input}
+        """
 
-    answer = response.text
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
 
-    st.session_state.messages.append(
-        {"role": "assistant", "content": answer}
-    )
+        answer = response.text
 
-    with st.chat_message("assistant"):
-        st.write(answer)
+        st.session_state.messages.append(
+            {
+                "role": "assistant",
+                "content": answer
+            }
+        )
+
+        with st.chat_message("assistant"):
+            st.write(answer)
+
+    except Exception as e:
+        st.error(f"Error: {e}")
