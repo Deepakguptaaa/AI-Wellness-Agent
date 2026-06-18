@@ -5,14 +5,21 @@ AI Wellness Agent Pro is an AI-powered health and wellness assistant built using
 ## Features
 
 * AI Wellness Chat Assistant
-* Wellness Report Generator
+* BMI Calculator
+* Daily Calorie Calculator
+* Wellness Dashboard
+* Wellness Score Tracking
+* AI Wellness Report Generator
+* Personalized 7-Day Wellness Plan
 * Sleep Improvement Guidance
 * Fitness Recommendations
 * Nutrition Advice
 * Stress Management Support
+* Conversation Memory
 * Category-Based Health Assistance
 * Interactive Streamlit Interface
 * Google Gemini AI Integration
+
 
 ## Tech Stack
 
