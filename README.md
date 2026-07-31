@@ -1,6 +1,18 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_APP_LINK)
+
+
 # AI Wellness Agent Pro
 
 AI Wellness Agent Pro is an AI-powered health and wellness assistant built using Python, Streamlit, and Google Gemini API. The application helps users receive personalized wellness recommendations, generate wellness reports, and interact with an AI health assistant.
+
+
+## 🚀 Live Demo
+
+Try the deployed app here:
+
+[AI Wellness Agent Live Demo](https://ai-wellness-agent-seuqvgrkh5jyp95kpcrsgr.streamlit.app/)
+
+
 
 ## Features
 
@@ -92,6 +104,12 @@ streamlit run app.py
 Application Interface:
 
 ![AI Wellness Agent](screenshots/app.png)
+
+### Home Page
+![Home](screenshots/home.png)
+
+### Generated Wellness Report
+![Report](screenshots/wellness_report.png)
 
 ## Future Enhancements
 
